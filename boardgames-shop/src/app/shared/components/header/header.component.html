@@ -1,3 +1,23 @@
-<a [routerLink]="['/games']">Games</a>
-<a [routerLink]="['/history']">Purchase History</a>
-<a [routerLink]="['/cart']">Card</a>
+<header class="p-4">
+  <div class="container mx-auto flex items-center justify-between">
+    <p class="text-slate-900 text-xl font-bold">Board Games Shop</p>
+
+    <nav class="flex space-x-4">
+      <a
+        [routerLink]="['/games']"
+        class="text-slate-900 hover:text-orange-500 transition-all"
+        >Games</a
+      >
+      <a
+        [routerLink]="['/history']"
+        class="text-slate-900 hover:text-orange-500 transition-all"
+        >Purchase History</a
+      >
+      <a
+        [routerLink]="['/cart']"
+        class="text-slate-900 hover:text-orange-500 transition-all"
+        >Cart</a
+      >
+    </nav>
+  </div>
+</header>
