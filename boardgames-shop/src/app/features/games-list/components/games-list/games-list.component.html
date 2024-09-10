@@ -1,1 +1,3 @@
-<p>games-list works!</p>
+<ng-container *ngFor="let game of games$ | async">
+  <div>{{ game.name }}</div>
+</ng-container>
