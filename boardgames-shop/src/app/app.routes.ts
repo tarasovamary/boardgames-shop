@@ -7,7 +7,7 @@ export const AppRoutes: Route[] = [
     loadChildren: () => import('./features/games-list/games-list.module').then((m) => m.GamesListModule),
   },
   {
-    path: 'purchase',
+    path: 'history',
     loadChildren: () =>
       import('./features/purchase-history/purchase-history.module').then((m) => m.PurchaseHistoryModule),
   },
