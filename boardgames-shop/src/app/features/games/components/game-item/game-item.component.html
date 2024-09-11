@@ -32,7 +32,11 @@
     <!-- Price and Add to Cart button -->
     <div class="flex justify-between items-center mt-4">
       <span class="text-xl font-bold text-gray-800">${{ game.price }}</span>
-      <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Add to Cart</button>
+      <button
+        class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition"
+        (click)="addToCart(game)">
+        Add to Cart
+      </button>
     </div>
   </div>
 </div>
