@@ -1,1 +1,3 @@
-<p>shopping-cart works!</p>
+<ng-container *ngFor="let game of games$ | async">
+    <app-cart-item [game]="game"></app-cart-item>
+  </ng-container>
