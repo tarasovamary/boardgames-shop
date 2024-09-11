@@ -4,13 +4,13 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FeaturesModule } from '../app/features/features.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { CoreModule } from './core/core.module';
 import { GamesEffects } from './core/store/games/games.effects';
 import { gamesReducer } from './core/store/games/games.reducer';
-import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
