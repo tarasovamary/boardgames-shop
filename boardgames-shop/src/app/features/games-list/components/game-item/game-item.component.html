@@ -1,0 +1,38 @@
+<div class="relative max-w-sm bg-white shadow-lg rounded-lg overflow-visible pt-16 mt-36">
+  <!-- Game image -->
+  <img
+    class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-auto rounded-xl object-cover"
+    [src]="game.images[0]"
+    [alt]="game.name" />
+
+  <!-- Information -->
+  <div class="p-4 mt-20 flex flex-col justify-between h-56">
+    <!-- Name and rating -->
+    <div class="flex justify-between items-center">
+      <h3 class="text-lg font-semibold text-gray-800">{{ game.name }}</h3>
+      <div class="flex items-center space-x-1 text-yellow-500">
+        <!-- Star icon and rating -->
+        <div class="flex items-center"></div>
+        <svg
+          class="w-5 h-5 mb-1"
+          fill="currentColor"
+          viewBox="0 0 22 22">
+          <path
+            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.715 5.275a1 1 0 00.95.69h5.506c.969 0 1.372 1.24.588 1.81l-4.453 3.27a1 1 0 00-.364 1.118l1.716 5.275c.3.921-.755 1.688-1.54 1.118l-4.453-3.27a1 1 0 00-1.175 0l-4.453 3.27c-.785.57-1.84-.197-1.54-1.118l1.716-5.275a1 1 0 00-.364-1.118l-4.453-3.27c-.784-.57-.38-1.81.588-1.81h5.506a1 1 0 00.95-.69L9.049 2.927z"></path>
+        </svg>
+        <span class="text-gray-600">{{ game.rating }}</span>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <p class="text-sm text-gray-600 mt-2">
+      {{ game.title }}
+    </p>
+
+    <!-- Price and Add to Cart button -->
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-800">${{ game.price }}</span>
+      <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Add to Cart</button>
+    </div>
+  </div>
+</div>
