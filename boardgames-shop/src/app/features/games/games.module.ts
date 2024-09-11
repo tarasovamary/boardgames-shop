@@ -7,15 +7,15 @@ import { GamesEffects } from '../../core/store/games/games.effects';
 import { gamesReducer } from '../../core/store/games/games.reducer';
 import { GameItemComponent } from './components/game-item/game-item.component';
 import { GamesListComponent } from './components/games-list/games-list.component';
-import { GamesListRoutes } from './games-list.routes';
+import { GamesRoutes } from './games.routes';
 
 @NgModule({
   declarations: [GamesListComponent, GameItemComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(GamesListRoutes),
+    RouterModule.forChild(GamesRoutes),
     StoreModule.forFeature('GAMES', gamesReducer),
     EffectsModule.forFeature([GamesEffects]),
   ],
 })
-export class GamesListModule {}
+export class GamesModule {}

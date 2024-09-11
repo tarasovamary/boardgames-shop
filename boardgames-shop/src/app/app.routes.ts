@@ -4,7 +4,7 @@ export const AppRoutes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: '/games' },
   {
     path: 'games',
-    loadChildren: () => import('./features/games-list/games-list.module').then((m) => m.GamesListModule),
+    loadChildren: () => import('./features/games/games.module').then((m) => m.GamesModule),
   },
   {
     path: 'history',
