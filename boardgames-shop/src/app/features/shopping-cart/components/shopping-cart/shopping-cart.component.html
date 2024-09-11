@@ -1,3 +1,13 @@
-<ng-container *ngFor="let game of games$ | async">
-    <app-cart-item [game]="game"></app-cart-item>
+<ng-container *ngIf="games$ | async as games">
+  <ng-container *ngIf="games.length > 0; else emptyCart">
+    <ng-container *ngFor="let game of games">
+      <app-cart-item [game]="game"></app-cart-item>
+    </ng-container>
   </ng-container>
+</ng-container>
+
+<ng-template #emptyCart>
+  <div class="flex justify-center items-center p-4">
+    <p class="text-orange-600 font-semibold text-2xl">Your cart is empty... :(</p>
+  </div>
+</ng-template>
