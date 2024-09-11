@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable, map } from 'rxjs';
 import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
+import { selectCartItems } from '../../../../core/store/cart/cart.selector';
 
 @Component({
   selector: 'app-game-item',
@@ -10,10 +12,18 @@ import * as CartActions from '../../../../core/store/cart/cart.actions';
 })
 export class GameItemComponent {
   @Input({ required: true }) game!: Game;
-
+  gamesInCart$: Observable<Game[]> = this.store.select(selectCartItems);
+  
   constructor(private store: Store) {}
 
   addToCart(game: Game) {
     this.store.dispatch(CartActions.addGameToCart({ game }));
+  }
+  isGameInCart(gameId: number): Observable<boolean> {
+    return this.gamesInCart$.pipe(map((game) => game.some((item) => item.id === gameId)));
+  }
+
+  removeFromCart(id: number) {
+    this.store.dispatch(CartActions.removeGameFromCart({ gameId: id }));
   }
 }

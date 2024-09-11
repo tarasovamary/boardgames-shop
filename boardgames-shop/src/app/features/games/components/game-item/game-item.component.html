@@ -29,14 +29,28 @@
       {{ game.title }}
     </p>
 
-    <!-- Price and Add to Cart button -->
     <div class="flex justify-between items-center mt-4">
+      <!-- Price -->
       <span class="text-xl font-bold text-gray-800">${{ game.price }}</span>
-      <button
-        class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition"
-        (click)="addToCart(game)">
-        Add to Cart
-      </button>
+
+      <!-- Cart Button -->
+      <ng-container *ngIf="isGameInCart(game.id) | async; else addToCartTemplate">
+        <!-- Remove game from cart -->
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded transition"
+          (click)="removeFromCart(game.id)">
+          Remove from cart
+        </button>
+      </ng-container>
+
+      <!-- Add game to cart -->
+      <ng-template #addToCartTemplate>
+        <button
+          class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition"
+          (click)="addToCart(game)">
+          Add to Cart
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>
