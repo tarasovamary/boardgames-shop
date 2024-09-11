@@ -3,6 +3,34 @@
     <ng-container *ngFor="let game of games">
       <app-cart-item [game]="game"></app-cart-item>
     </ng-container>
+
+    <ng-container *ngIf="totalPrice$ | async as totalPrice">
+      <div class="flex items-center justify-between py-8 px-4">
+        <p class="font-semibold">Subtotal</p>
+        <p class="font-semibold">${{ totalPrice }}</p>
+      </div>
+    </ng-container>
+
+    <button class="w-full bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Buy</button>
+    <span class="flex items-center justify-center text-slate-500 text-sm mt-1"
+      >or
+      <a
+        [routerLink]="'/games'"
+        class="flex items-center ml-1 text-orange-400 hover:text-orange-600 transition">
+        Continue Shopping
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+        </svg> </a
+    ></span>
   </ng-container>
 </ng-container>
 
