@@ -9,8 +9,6 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { CoreModule } from './core/core.module';
-import { GamesEffects } from './core/store/games/games.effects';
-import { gamesReducer } from './core/store/games/games.reducer';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
