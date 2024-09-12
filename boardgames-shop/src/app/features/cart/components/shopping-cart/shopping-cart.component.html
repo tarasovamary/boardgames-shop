@@ -22,7 +22,9 @@
           </div>
         </ng-container>
         <!-- Buy button or Continue shopping link -->
-        <button class="w-full bg-orange-500 text-white font-semibold px-4 py-2 rounded hover:bg-orange-600 transition">
+        <button
+          class="w-full bg-orange-500 text-white font-semibold px-4 py-2 rounded hover:bg-orange-600 transition"
+          (click)="openOrderCheckoutDialog()">
           Buy
         </button>
         <span class="flex items-center justify-center text-slate-500 text-sm mt-2">
