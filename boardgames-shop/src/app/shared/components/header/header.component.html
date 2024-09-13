@@ -34,7 +34,7 @@
           </svg>
 
           <span
-            *ngIf="(gamesInCart$ | async)?.length as count"
+            *ngIf="(cartItems$ | async)?.length as count"
             class="absolute -top-2 -right-2 bg-white text-black rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold shadow-md">
             {{ count }}
           </span>

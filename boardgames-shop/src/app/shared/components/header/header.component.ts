@@ -10,7 +10,7 @@ import { selectCartItems } from '../../../core/store/cart/cart.selector';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  gamesInCart$: Observable<Game[]> = this.store.select(selectCartItems);
+  cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
 
   constructor(private store: Store) {}
 }

@@ -12,7 +12,7 @@ import { selectCartItems } from '../../../../core/store/cart/cart.selector';
 })
 export class GameItemComponent {
   @Input({ required: true }) game!: Game;
-  gamesInCart$: Observable<Game[]> = this.store.select(selectCartItems);
+  cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
   
   constructor(private store: Store) {}
 
@@ -20,7 +20,7 @@ export class GameItemComponent {
     this.store.dispatch(CartActions.addGameToCart({ game }));
   }
   isGameInCart(gameId: number): Observable<boolean> {
-    return this.gamesInCart$.pipe(map((game) => game.some((item) => item.id === gameId)));
+    return this.cartItems$.pipe(map((game) => game.some((item) => item.id === gameId)));
   }
 
   removeFromCart(id: number): void {

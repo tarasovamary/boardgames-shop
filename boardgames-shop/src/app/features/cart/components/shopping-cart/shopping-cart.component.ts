@@ -12,7 +12,7 @@ import { OrderCheckoutComponent } from '../order-checkout/order-checkout.compone
   styleUrl: './shopping-cart.component.scss',
 })
 export class ShoppingCartComponent {
-  games$: Observable<Game[]> = this.store.select(selectCartItems);
+  cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
   totalPrice$: Observable<number> = this.store.select(selectCartTotalPrice);
 
   constructor(
