@@ -85,7 +85,7 @@
         class="border-l p-4"
         style="flex: 50%">
         <h3 class="text-slate-800 text-xl font-semibold mb-4">Order Summary</h3>
-        <div *ngFor="let item of cartItems$ | async">
+        <div *ngFor="let item of cartItems$ | async; trackBy: trackByFn">
           <app-cart-item [game]="item"></app-cart-item>
         </div>
         <div class="flex justify-between pt-4">

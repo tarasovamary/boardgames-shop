@@ -16,4 +16,8 @@ export class GamesListComponent {
   constructor(private store: Store) {
     this.store.dispatch(GamesActions.loadGames());
   }
+
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
 }

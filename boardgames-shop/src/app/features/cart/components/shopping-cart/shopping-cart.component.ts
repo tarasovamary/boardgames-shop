@@ -23,4 +23,8 @@ export class ShoppingCartComponent {
   openOrderCheckoutDialog(): void {
     const dialogRef = this.dialog.open(OrderCheckoutComponent);
   }
+
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
 }

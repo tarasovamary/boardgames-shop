@@ -39,4 +39,8 @@ export class OrderCheckoutComponent implements OnInit {
 
     this.router.navigate(['./games']);
   }
+
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
 }
