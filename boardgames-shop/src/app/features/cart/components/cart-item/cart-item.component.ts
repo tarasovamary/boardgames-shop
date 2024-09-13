@@ -13,7 +13,7 @@ export class CartItemComponent {
 
   constructor(private store: Store) {}
 
-  removeFromCart(id: number) {
+  removeFromCart(id: number): void {
     this.store.dispatch(CartActions.removeGameFromCart({ gameId: id }));
   }
 }

@@ -16,14 +16,14 @@ export class GameItemComponent {
   
   constructor(private store: Store) {}
 
-  addToCart(game: Game) {
+  addToCart(game: Game): void {
     this.store.dispatch(CartActions.addGameToCart({ game }));
   }
   isGameInCart(gameId: number): Observable<boolean> {
     return this.gamesInCart$.pipe(map((game) => game.some((item) => item.id === gameId)));
   }
 
-  removeFromCart(id: number) {
+  removeFromCart(id: number): void {
     this.store.dispatch(CartActions.removeGameFromCart({ gameId: id }));
   }
 }

@@ -20,7 +20,7 @@ export class ShoppingCartComponent {
     public dialog: MatDialog,
   ) {}
 
-  openOrderCheckoutDialog() {
+  openOrderCheckoutDialog(): void {
     const dialogRef = this.dialog.open(OrderCheckoutComponent);
   }
 }
