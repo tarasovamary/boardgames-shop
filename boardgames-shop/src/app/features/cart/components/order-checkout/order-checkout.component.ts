@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { selectCartItems, selectCartTotalPrice } from '../../../../core/store/cart/cart.selector';
@@ -19,6 +19,8 @@ export class OrderCheckoutComponent implements OnInit {
   cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
   totalPrice$: Observable<number> = this.store.select(selectCartTotalPrice);
 
+  private unsubscribeAll: Subject<any> = new Subject<any>();
+
   constructor(
     public dialogRef: MatDialogRef<OrderCheckoutComponent>,
     private store: Store,
@@ -33,12 +35,23 @@ export class OrderCheckoutComponent implements OnInit {
       email: [null, Validators.required],
       address: [null, Validators.required],
     });
+
+    // Subscribe to changes in the cart
+    this.cartItems$.pipe(takeUntil(this.unsubscribeAll)).subscribe((cartItems) => {
+      // If the cart is empty, close the dialog
+      if (cartItems.length === 0) {
+        this.dialogRef.close();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next(null);
+    this.unsubscribeAll.complete();
   }
 
   submitOrder(): void {
     this.store.dispatch(CartActions.clearCart());
-    
-    this.dialogRef.close();
 
     this.router.navigate(['./games']);
   }
