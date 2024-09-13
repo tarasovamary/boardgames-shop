@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply font-montserrat;
+}
+
 body {
-  @apply mx-auto px-4 lg:px-8 font-montserrat bg-white;
+  @apply mx-auto px-4 lg:px-8 bg-white;
 }

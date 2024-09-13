@@ -1,6 +1,107 @@
 <mat-dialog-content>
-  <p>order-checkout works!</p>
+  <div class="container mx-auto p-2">
+    <h2 class="text-slate-900 text-2xl font-bold mb-4">Checkout</h2>
+
+    <div class="flex items-start">
+      <!-- Shipping Information -->
+      <div
+        class="p-4"
+        style="flex: 50%">
+        <h3 class="text-slate-800 text-xl font-semibold mb-4">Shipping Information</h3>
+
+        <form
+          [formGroup]="orderForm"
+          (ngSubmit)="submitOrder()">
+          <div class="flex items-center justify-between mb-4 gap-4">
+            <!-- First Name-->
+            <div class="flex-1">
+              <label
+                for="firstname"
+                class="block text-sm font-medium text-gray-700"
+                >First Name</label
+              >
+              <input
+                type="text"
+                id="firstname"
+                formControlName="firstname"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" />
+            </div>
+
+            <!-- Last Name-->
+            <div class="flex-1">
+              <label
+                for="lastname"
+                class="block text-sm font-medium text-gray-700"
+                >Last Name</label
+              >
+              <input
+                type="text"
+                id="lastname"
+                formControlName="lastname"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" />
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700"
+              >E-mail</label
+            >
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" />
+          </div>
+
+          <!-- Address -->
+          <div class="mb-4">
+            <label
+              for="address"
+              class="block text-sm font-medium text-gray-700"
+              >Address</label
+            >
+            <input
+              type="text"
+              id="address"
+              formControlName="address"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" />
+          </div>
+
+          <!-- Button Confirm order -->
+          <button
+            type="submit"
+            class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition disabled:bg-slate-300 disabled:cursor-not-allowed"
+            [disabled]="orderForm.invalid">
+            Confirm Order
+          </button>
+        </form>
+      </div>
+
+      <!-- Order Summary -->
+      <div
+        class="border-l p-4"
+        style="flex: 50%">
+        <h3 class="text-slate-800 text-xl font-semibold mb-4">Order Summary</h3>
+        <div *ngFor="let item of cartItems$ | async">
+          <app-cart-item [game]="item"></app-cart-item>
+        </div>
+        <div class="flex justify-between pt-4">
+          <span class="text-slate-800 text-xl font-bold">Total:</span>
+          <span class="text-slate-800 text-xl font-bold">${{ totalPrice$ | async }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-  <button mat-dialog-close class="bg-orange-500">Cancel</button>
+  <!-- Cancel button -->
+  <button
+    mat-dialog-close
+    class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+    Cancel
+  </button>
 </mat-dialog-actions>

@@ -14,10 +14,10 @@
       </div>
 
       <div class="mt-auto px-4 py-2">
-        <!-- Subtotal information -->
+        <!-- Total information -->
         <ng-container *ngIf="totalPrice$ | async as totalPrice">
           <div class="flex items-center justify-between py-8 px-4">
-            <p class="font-semibold">Subtotal</p>
+            <p class="font-semibold">Total</p>
             <p class="font-semibold">${{ totalPrice }}</p>
           </div>
         </ng-container>
