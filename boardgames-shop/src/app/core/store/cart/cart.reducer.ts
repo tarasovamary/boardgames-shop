@@ -6,10 +6,10 @@ export const cartReducer = createReducer(
   initialState,
   on(CartActions.addGameToCart, (state, { game }) => ({
     ...state,
-    gamesInCart: [...state.gamesInCart, game],
+    cartItems: [...state.cartItems, game],
   })),
   on(CartActions.removeGameFromCart, (state, { gameId }) => ({
     ...state,
-    gamesInCart: state.gamesInCart.filter((game) => game.id !== gameId),
+    cartItems: state.cartItems.filter((game) => game.id !== gameId),
   })),
 );
