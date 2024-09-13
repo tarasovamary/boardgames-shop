@@ -12,4 +12,8 @@ export const cartReducer = createReducer(
     ...state,
     cartItems: state.cartItems.filter((game) => game.id !== gameId),
   })),
+  on(CartActions.clearCart, (state) => ({
+    ...state,
+    cartItems: [],
+  })),
 );

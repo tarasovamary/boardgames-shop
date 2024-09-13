@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Game } from '../../../../core/models/game.model';
+import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { selectCartItems, selectCartTotalPrice } from '../../../../core/store/cart/cart.selector';
 
 @Component({
@@ -35,6 +36,8 @@ export class OrderCheckoutComponent implements OnInit {
   }
 
   submitOrder(): void {
+    this.store.dispatch(CartActions.clearCart());
+    
     this.dialogRef.close();
 
     this.router.navigate(['./games']);
