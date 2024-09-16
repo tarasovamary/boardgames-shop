@@ -1,1 +1,4 @@
-<p>purchase-history works!</p>
+<ng-container *ngFor="let item of purchaseItems$ | async">
+    <p>{{item.name}}</p>
+  <app-cart-item [game]="item"></app-cart-item>
+</ng-container>

@@ -71,12 +71,15 @@
           </div>
 
           <!-- Button Confirm order -->
-          <button
-            type="submit"
-            class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition disabled:bg-slate-300 disabled:cursor-not-allowed"
-            [disabled]="orderForm.invalid">
-            Confirm Order
-          </button>
+          <ng-container *ngIf="cartItems$ | async as items">
+            <button
+              (click)="addPurchases(items)"
+              type="submit"
+              class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition disabled:bg-slate-300 disabled:cursor-not-allowed"
+              [disabled]="orderForm.invalid">
+              Confirm Order
+            </button>
+          </ng-container>
         </form>
       </div>
 

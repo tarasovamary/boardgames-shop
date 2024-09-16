@@ -7,6 +7,7 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { selectCartItems, selectCartTotalPrice } from '../../../../core/store/cart/cart.selector';
+import * as PurchasesActions from '../../../../core/store/purchase/purchase.actions';
 
 @Component({
   selector: 'app-order-checkout',
@@ -54,6 +55,10 @@ export class OrderCheckoutComponent implements OnInit {
     this.store.dispatch(CartActions.clearCart());
 
     this.router.navigate(['./games']);
+  }
+
+  addPurchases(purchases: Game[]): void {
+    this.store.dispatch(PurchasesActions.addPurchases({ purchases }));
   }
 
   trackByFn(index: number, item: any): any {
