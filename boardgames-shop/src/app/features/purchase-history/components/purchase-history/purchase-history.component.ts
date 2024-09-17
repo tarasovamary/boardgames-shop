@@ -14,8 +14,6 @@ export class PurchaseHistoryComponent {
   purchaseItems$: Observable<Game[]> = this.store.select(selectAllPurchases);
 
   constructor(private store: Store) {
-    this.store.dispatch(PurchasesActions.loadPurchases());
 
-    this.purchaseItems$.pipe(tap(item => console.log(item))).subscribe()
   }
 }

@@ -4,34 +4,8 @@ import { initialState } from './purchase.state';
 
 export const purchaseReducer = createReducer(
   initialState,
-  on(PurchaseActions.loadPurchases, (state) => ({
+  on(PurchaseActions.addPurchases, (state, { purchases }) => ({
     ...state,
-    loading: true,
-  })),
-  on(PurchaseActions.loadPurchasesSuccess, (state, { purchases }) => ({
-    ...state,
-    purchases,
-    loading: false,
-    error: null,
-  })),
-  on(PurchaseActions.loadPurchasesFailure, (state, { error }) => ({
-    ...state,
-    error,
-    loading: false,
-  })),
-  on(PurchaseActions.addPurchases, (state) => ({
-    ...state,
-    loading: true,
-  })),
-  on(PurchaseActions.addPurchasesSuccess, (state, { purchases }) => ({
-    ...state,
-    purchases,
-    loading: false,
-    error: null,
-  })),
-  on(PurchaseActions.addPurchasesFailure, (state, { error }) => ({
-    ...state,
-    error,
-    loading: false,
+    purchases:[...state.purchases, ...purchases],
   })),
 );
