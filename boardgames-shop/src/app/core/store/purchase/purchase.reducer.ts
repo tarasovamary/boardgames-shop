@@ -6,6 +6,12 @@ export const purchaseReducer = createReducer(
   initialState,
   on(PurchaseActions.addPurchases, (state, { purchases }) => ({
     ...state,
-    purchases:[...state.purchases, ...purchases],
+    purchases: [
+      ...state.purchases,
+      ...purchases.map((purchase) => ({
+        ...purchase,
+        date: new Date(),
+      })),
+    ],
   })),
 );

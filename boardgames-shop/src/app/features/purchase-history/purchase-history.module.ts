@@ -6,9 +6,10 @@ import { purchaseReducer } from '../../core/store/purchase/purchase.reducer';
 import { SharedModule } from '../../shared/shared.module';
 import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
 import { PurchaseHistoryRoutes } from './purchase-history.routes';
+import { PurchaseItemComponent } from './components/purchase-item/purchase-item.component';
 
 @NgModule({
-  declarations: [PurchaseHistoryComponent],
+  declarations: [PurchaseHistoryComponent, PurchaseItemComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(PurchaseHistoryRoutes),

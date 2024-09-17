@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
-import { Game } from '../../../../core/models/game.model';
-import * as PurchasesActions from '../../../../core/store/purchase/purchase.actions';
-import { selectAllPurchases } from '../../../../core/store/purchase/purchase.selectors';
+import { Observable } from 'rxjs';
+import { Purchase } from '../../../../core/models/purchase.model';
+import { selectAllPurchases, selectPurchaseTotalPrice } from '../../../../core/store/purchase/purchase.selectors';
 
 @Component({
   selector: 'app-purchase-history',
@@ -11,9 +10,12 @@ import { selectAllPurchases } from '../../../../core/store/purchase/purchase.sel
   styleUrl: './purchase-history.component.scss',
 })
 export class PurchaseHistoryComponent {
-  purchaseItems$: Observable<Game[]> = this.store.select(selectAllPurchases);
+  purchaseItems$: Observable<Purchase[]> = this.store.select(selectAllPurchases);
+  totalPurchasePrice$: Observable<number> = this.store.select(selectPurchaseTotalPrice);
 
-  constructor(private store: Store) {
+  constructor(private store: Store) {}
 
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
   }
 }
