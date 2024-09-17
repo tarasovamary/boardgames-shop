@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [ShoppingCartComponent, OrderCheckoutComponent],
+  declarations: [ShoppingCartComponent, OrderCheckoutComponent, CartItemComponent],
   imports: [
     CommonModule,
     MatDialogModule,

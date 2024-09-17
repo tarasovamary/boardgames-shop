@@ -6,8 +6,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { CartItemComponent } from '../features/cart/components/cart-item/cart-item.component';
 
 @NgModule({
-  declarations: [HeaderComponent, CartItemComponent],
+  declarations: [HeaderComponent],
   imports: [CommonModule, RouterModule, MatTooltipModule],
-  exports: [HeaderComponent, CartItemComponent],
+  exports: [HeaderComponent],
 })
 export class SharedModule {}
