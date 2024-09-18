@@ -8,3 +8,8 @@ export const getGamesState = createFeatureSelector<GamesState>(selectGamesKey);
 export const selectAllGames = createSelector(getGamesState, (state: GamesState) => state.games);
 
 export const selectGamesLoading = createSelector(getGamesState, (state: GamesState) => state.loading);
+
+export const selectGameById = (id: string) => createSelector(
+    getGamesState,
+    (state: GamesState) => state.games.find(game => game.id === id)
+  );

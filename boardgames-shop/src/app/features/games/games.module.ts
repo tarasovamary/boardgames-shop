@@ -8,9 +8,10 @@ import { gamesReducer } from '../../core/store/games/games.reducer';
 import { GameItemComponent } from './components/game-item/game-item.component';
 import { GamesListComponent } from './components/games-list/games-list.component';
 import { GamesRoutes } from './games.routes';
+import { GameDetailsComponent } from './components/game-details/game-details.component';
 
 @NgModule({
-  declarations: [GamesListComponent, GameItemComponent],
+  declarations: [GamesListComponent, GameItemComponent, GameDetailsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(GamesRoutes),

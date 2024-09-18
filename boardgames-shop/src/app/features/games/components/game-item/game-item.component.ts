@@ -19,11 +19,11 @@ export class GameItemComponent {
   addToCart(game: Game): void {
     this.store.dispatch(CartActions.addGameToCart({ game }));
   }
-  isGameInCart(gameId: number): Observable<boolean> {
+  isGameInCart(gameId: string): Observable<boolean> {
     return this.cartItems$.pipe(map((game) => game.some((item) => item.id === gameId)));
   }
 
-  removeFromCart(id: number): void {
+  removeFromCart(id: string): void {
     this.store.dispatch(CartActions.removeGameFromCart({ gameId: id }));
   }
 }

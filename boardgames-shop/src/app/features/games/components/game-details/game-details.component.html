@@ -1,0 +1,118 @@
+<ng-container *ngIf="game$ | async as game">
+  <div class="p-6 max-w-5xl mx-auto bg-white">
+    <!-- Main information-->
+    <div class="relative flex flex-col md:flex-row">
+      <!-- Background -->
+      <div class="absolute inset-0">
+        <!-- Image for the background -->
+        <img
+          [src]="game.images[0]"
+          alt="{{ game.name }}"
+          class="w-full h-full object-cover" />
+
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black"></div>
+      </div>
+
+      <!-- Main content over the background -->
+      <div class="relative z-10 flex flex-col md:flex-row w-full p-6">
+        <!-- Main Game Image -->
+        <div class="relative">
+          <img
+            [src]="game.images[0]"
+            alt="{{ game.name }}"
+            class="w-full h-64 object-cover rounded-lg shadow-md" />
+        </div>
+
+        <!-- Game Title and Price -->
+        <div class="md:w-1/2 md:pl-6 mt-4 md:mt-0">
+          <h1 class="text-3xl font-bold text-white">{{ game.name }}</h1>
+          <p class="text-lg mt-2 text-white">{{ game.title }}</p>
+          <div class="mt-4">
+            <span class="text-xl font-semibold text-white">${{ game.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Details -->
+    <div class="flex justify-between bg-orange-50 p-2">
+      <div class="flex flex-col items-center">
+        <span class="ml-2 font-bold text-gray-900">{{ game.yearpublished }}</span>
+        <span class="text-gray-600 text-xs">Published Year</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="ml-2 font-bold text-gray-900">{{ game.rating }}</span>
+        <span class="text-gray-600 text-xs">Rating</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="ml-2 font-bold text-gray-900">{{ game.designer }}</span>
+        <span class="text-gray-600 text-xs">Designer</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="ml-2 font-bold text-gray-900">{{ game.minplayers }} - {{ game.maxplayers }}</span>
+        <span class="text-gray-600 text-xs">Players</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="ml-2 font-bold text-gray-900">{{ game.playingtime }} min</span>
+        <span class="text-gray-600 text-xs">Playing Time</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="ml-2 font-bold text-gray-900">{{ game.minage }} years</span>
+        <span class="text-gray-600 text-xs">Minimum Age</span>
+      </div>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="grid grid-cols-3 gap-2">
+      <ng-container *ngFor="let image of game.images.slice(1, 4)">
+        <a
+          [href]="image"
+          target="_blank"
+          rel="noopener noreferrer">
+          <img
+            [src]="image"
+            alt="{{ game.name }}"
+            class="w-full h-44 object-cover rounded-lg shadow-md cursor-pointer" />
+        </a>
+      </ng-container>
+    </div>
+
+    <!-- Game Description and Classification-->
+    <div class="flex flex-col mt-4">
+      <h2 class="font-bold text-xl pb-1 border-b">Description</h2>
+      <div class="flex mt-2">
+        <!-- Description -->
+        <p class="text-lg text-justify text-gray-700">{{ game.description }}</p>
+
+        <!-- Classification -->
+        <div class="flex flex-col p-2 ml-4 bg-slate-100">
+          <h3 class="font-bold text-sm text-slate-800">{{ 'Classification' | uppercase }}</h3>
+          <!-- Type -->
+          <div class="mt-4">
+            <p class="font-semibold text-slate-800">Type:</p>
+            <ul class="list-none ml-5">
+              <li *ngFor="let type of game.type; trackBy: trackByFn">{{ type }}</li>
+            </ul>
+          </div>
+          <!-- Category -->
+          <div class="mt-4">
+            <p class="font-semibold text-slate-800">Category:</p>
+            <ul class="list-none ml-5">
+              <li *ngFor="let category of game.category; trackBy: trackByFn">{{ category }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-6">
+      <a
+        routerLink="/games"
+        class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+        Back to Games
+      </a>
+    </div>
+  </div>
+</ng-container>
