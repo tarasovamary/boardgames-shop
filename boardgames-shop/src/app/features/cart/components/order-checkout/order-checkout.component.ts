@@ -54,6 +54,10 @@ export class OrderCheckoutComponent implements OnInit {
   submitOrder(): void {
     this.store.dispatch(CartActions.clearCart());
 
+    this.goBack();
+  }
+
+  goBack() {
     this.router.navigate(['./games']);
   }
 
