@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Game } from '../../../../core/models/game.model';
+import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { CartItemComponent } from './cart-item.component';
 
 describe('CartItemComponent', () => {
@@ -48,5 +49,14 @@ describe('CartItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should dispatch removeGameFromCart action with correct gameId', () => {
+    const gameId = '123';
+    spyOn(mockStore, 'dispatch');
+
+    component.removeFromCart(gameId);
+
+    expect(mockStore.dispatch).toHaveBeenCalledWith(CartActions.removeGameFromCart({ gameId }));
   });
 });
