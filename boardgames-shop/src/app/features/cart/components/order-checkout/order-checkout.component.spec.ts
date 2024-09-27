@@ -98,4 +98,22 @@ describe('OrderCheckoutComponent', () => {
 
     expect(mockStore.dispatch).toHaveBeenCalledWith(PurchasesActions.addPurchases({ purchases: mockPurchases }));
   });
+
+  it('should return id of the item when id exists', () => {
+    const item = { id: '123', name: 'Test Game' };
+    const index = 0;
+
+    const result = component.trackByFn(index, item);
+
+    expect(result).toBe('123');
+  });
+
+  it('should return the index when item id does not exist', () => {
+    const item = { name: 'Test Game' }; // no id in the item
+    const index = 2;
+
+    const result = component.trackByFn(index, item);
+
+    expect(result).toBe(index);
+  });
 });
