@@ -3,7 +3,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
+import * as PurchasesActions from '../../../../core/store/purchase/purchase.actions';
 import { OrderCheckoutComponent } from './order-checkout.component';
 
 describe('OrderCheckoutComponent', () => {
@@ -50,5 +52,50 @@ describe('OrderCheckoutComponent', () => {
     component.submitOrder();
 
     expect(mockRouter.navigate).toHaveBeenCalledWith(['./games']);
+  });
+
+  it('should dispatch addPurchases action with correct purchases', () => {
+    const mockPurchases: Game[] = [
+      {
+        id: '1',
+        name: 'Game 1',
+        price: 20,
+        images: [],
+        title: 'Title 1',
+        description: 'Desc 1',
+        yearpublished: 2020,
+        rating: '4.5',
+        designer: 'Designer 1',
+        minplayers: 2,
+        maxplayers: 4,
+        playingtime: 60,
+        minage: 10,
+        type: [],
+        category: [],
+      },
+      {
+        id: '2',
+        name: 'Game 2',
+        price: 30,
+        images: [],
+        title: 'Title 2',
+        description: 'Desc 2',
+        yearpublished: 2021,
+        rating: '4.8',
+        designer: 'Designer 2',
+        minplayers: 3,
+        maxplayers: 5,
+        playingtime: 90,
+        minage: 12,
+        type: [],
+        category: [],
+      },
+    ];
+
+    spyOn(mockStore, 'dispatch');
+
+    component.addPurchases(mockPurchases);
+
+    expect(mockStore.dispatch).toHaveBeenCalledWith(PurchasesActions.addPurchases({ purchases: mockPurchases }));
   });
 });
