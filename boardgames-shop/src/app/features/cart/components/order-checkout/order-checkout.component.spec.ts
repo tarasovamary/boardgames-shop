@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog'; // Импортируем MatDialogModule и MatDialogRef
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { OrderCheckoutComponent } from './order-checkout.component';
 
 describe('OrderCheckoutComponent', () => {
@@ -25,5 +26,13 @@ describe('OrderCheckoutComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should dispatch clearCart action', () => {
+    spyOn(mockStore, 'dispatch');
+
+    component.submitOrder();
+
+    expect(mockStore.dispatch).toHaveBeenCalledWith(CartActions.clearCart());
   });
 });
