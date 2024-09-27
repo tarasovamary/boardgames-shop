@@ -1,19 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog'; // Импортируем MatDialogModule и MatDialogRef
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { OrderCheckoutComponent } from './order-checkout.component';
 
 describe('OrderCheckoutComponent', () => {
   let component: OrderCheckoutComponent;
   let fixture: ComponentFixture<OrderCheckoutComponent>;
+  let mockStore: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OrderCheckoutComponent]
-    })
-    .compileComponents();
-    
+      imports: [MatDialogModule, ReactiveFormsModule],
+      declarations: [OrderCheckoutComponent],
+      providers: [provideMockStore({}), { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } }],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(OrderCheckoutComponent);
     component = fixture.componentInstance;
+    mockStore = TestBed.inject(MockStore);
+
     fixture.detectChanges();
   });
 

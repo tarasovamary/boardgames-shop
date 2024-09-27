@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, filter, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subject, filter, map, takeUntil } from 'rxjs';
 import { Game } from '../../../../core/models/game.model';
 import { selectGameById } from '../../../../core/store/games/games.selectors';
 
@@ -22,16 +22,14 @@ export class GameDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.routeId$ = this.activatedRoute.paramMap.pipe(switchMap((params) => params.getAll('id')));
+    this.routeId$ = this.activatedRoute.paramMap.pipe(
+      map((params) => params.get('id')),
+      filter((id): id is string => !!id),
+    );
 
-    this.routeId$
-      .pipe(
-        takeUntil(this.unsubscribeAll),
-        filter((id) => !!id),
-      )
-      .subscribe((id) => {
-        this.game$ = this.store.select(selectGameById(id));
-      });
+    this.routeId$.pipe(takeUntil(this.unsubscribeAll)).subscribe((id) => {
+      this.game$ = this.store.select(selectGameById(id));
+    });
   }
 
   ngOnDestroy(): void {
