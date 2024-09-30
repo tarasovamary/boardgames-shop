@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -9,13 +9,23 @@ import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { selectCartItems, selectCartTotalPrice } from '../../../../core/store/cart/cart.selector';
 import * as PurchasesActions from '../../../../core/store/purchase/purchase.actions';
 
+export interface OrderForm {
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  address: string | null;
+}
+export type OrderFormGroup = FormGroup<{
+  [K in keyof OrderForm]: FormControl<OrderForm[K]>;
+}>;
+
 @Component({
   selector: 'app-order-checkout',
   templateUrl: './order-checkout.component.html',
   styleUrl: './order-checkout.component.scss',
 })
 export class OrderCheckoutComponent implements OnInit {
-  orderForm!: FormGroup;
+  orderForm!: OrderFormGroup;
 
   cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
   totalPrice$: Observable<number> = this.store.select(selectCartTotalPrice);
@@ -31,10 +41,10 @@ export class OrderCheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderForm = this.fb.group({
-      firstname: [null, Validators.required],
-      lastname: [null, Validators.required],
-      email: [null, Validators.required],
-      address: [null, Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      address: ['', Validators.required],
     });
 
     // Subscribe to changes in the cart
