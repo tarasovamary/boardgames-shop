@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Game } from '../../../../core/models/game.model';
+import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { GameItemComponent } from './game-item.component';
 
 describe('GameItemComponent', () => {
@@ -49,5 +50,22 @@ describe('GameItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should dispatch addToCart action with correct game', () => {
+    spyOn(mockStore, 'dispatch');
+
+    component.addToCart(mockGame);
+
+    expect(mockStore.dispatch).toHaveBeenCalledWith(CartActions.addGameToCart({ game: mockGame }));
+  });
+
+  it('should dispatch removeGameFromCart action with correct gameId', () => {
+    const gameId = '123';
+    spyOn(mockStore, 'dispatch');
+
+    component.removeFromCart(gameId);
+
+    expect(mockStore.dispatch).toHaveBeenCalledWith(CartActions.removeGameFromCart({ gameId }));
   });
 });
