@@ -9,7 +9,7 @@
       <div class="flex-grow">
         <!-- Games list -->
         <ng-container *ngFor="let game of games; trackBy: trackByFn">
-          <app-cart-item [game]="game"></app-cart-item>
+          <app-cart-item [item]="game"></app-cart-item>
         </ng-container>
       </div>
 

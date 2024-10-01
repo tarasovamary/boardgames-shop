@@ -10,9 +10,10 @@ import { OrderCheckoutComponent } from './components/order-checkout/order-checko
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { ItemCounterComponent } from './components/item-counter/item-counter.component';
 
 @NgModule({
-  declarations: [ShoppingCartComponent, OrderCheckoutComponent, CartItemComponent],
+  declarations: [ShoppingCartComponent, OrderCheckoutComponent, CartItemComponent, ItemCounterComponent],
   imports: [
     CommonModule,
     MatDialogModule,

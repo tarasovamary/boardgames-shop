@@ -10,7 +10,7 @@
       <div class="flex-grow">
         <ng-container *ngFor="let item of items; trackBy: trackByFn">
           <!--Purchase item-->
-          <app-purchase-item [game]="item"></app-purchase-item>
+          <app-purchase-item [item]="item"></app-purchase-item>
         </ng-container>
       </div>
       <!-- Total price -->

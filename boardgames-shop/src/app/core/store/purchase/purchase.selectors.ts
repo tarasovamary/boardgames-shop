@@ -8,5 +8,5 @@ export const getPurchaseState = createFeatureSelector<PurchaseState>(selectPurch
 export const selectAllPurchases = createSelector(getPurchaseState, (state: PurchaseState) => state.purchases);
 
 export const selectPurchaseTotalPrice = createSelector(getPurchaseState, (state: PurchaseState) =>
-  state.purchases.reduce((total, game) => total + game.price, 0),
+  state.purchases.reduce((total, item) => total + item.game.price * item.quantity, 0)
 );

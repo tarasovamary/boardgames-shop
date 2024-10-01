@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Game } from '../../../core/models/game.model';
-import { selectCartItems } from '../../../core/store/cart/cart.selector';
+import { selectCartItems, selectCartTotalQuantity } from '../../../core/store/cart/cart.selector';
+import { CartItem } from '../../../core/models/cart-item.model';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { selectCartItems } from '../../../core/store/cart/cart.selector';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
+  totalQuantity$: Observable<number> = this.store.select(selectCartTotalQuantity);
 
   constructor(private store: Store) {}
 }

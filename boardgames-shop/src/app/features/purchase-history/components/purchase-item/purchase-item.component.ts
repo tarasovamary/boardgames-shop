@@ -7,5 +7,5 @@ import { Purchase } from '../../../../core/models/purchase.model';
   styleUrl: './purchase-item.component.scss',
 })
 export class PurchaseItemComponent {
-  @Input({ required: true }) game!: Purchase;
+  @Input({ required: true }) item!: Purchase;
 }

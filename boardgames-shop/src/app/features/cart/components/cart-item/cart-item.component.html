@@ -1,37 +1,48 @@
-<div class="flex justify-between p-4 border-b border-gray-200">
-  <!-- Image -->
-  <img
-    [src]="game.images[0]"
-    [alt]="game.name"
-    class="w-24 h-24 object-cover rounded-lg" />
+<ng-container *ngIf="item.game as game">
+  <div class="flex p-4 border-b border-gray-200">
+    <!-- Image -->
+    <img
+      [src]="game.images[0]"
+      [alt]="game.name"
+      class="w-24 h-24 object-cover rounded-lg" />
 
-  <!-- Details -->
-  <div class="flex flex-col flex-1 ml-4">
-    <div class="flex flex-col justify-between h-full">
-      <!-- Game Name and Price -->
-      <div class="flex items-center justify-between">
+    <!-- Details -->
+    <div class="flex flex-1 ml-4">
+      <!--Name and Description-->
+      <div class="flex flex-1 flex-col justify-start h-full">
+        <!-- Name -->
         <h3 class="text-lg font-semibold text-gray-900">{{ game.name }}</h3>
-        <span class="text-lg font-bold text-gray-900">${{ game.price }}</span>
+        <!-- Description -->
+        <p class="text-sm text-gray-600 mt-2">{{ game.title }}</p>
       </div>
-      <!-- Description -->
-      <p class="text-sm text-gray-600 mt-2">{{ game.title }}</p>
-      <!-- Remove button -->
-      <button
-        (click)="removeFromCart(game.id)"
-        class="flex justify-end mt-auto text-red-500 hover:text-red-700 transition"
-        aria-label="Remove item">
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
+
+      <!-- Quantity Counter -->
+      <app-item-counter
+        [quantity]="item.quantity"
+        (quantityChange)="updateQuantity(game.id, $event)"></app-item-counter>
+
+      <!--Price and Remove button-->
+      <div class="flex flex-col justify-between h-full min-w-14">
+        <!--Price-->
+        <span class="flex justify-end text-lg font-bold text-gray-900">${{ game.price * item.quantity }}</span>
+        <!-- Remove button -->
+        <button
+          (click)="removeFromCart(game.id)"
+          class="flex justify-end mt-auto text-red-500 hover:text-red-700 transition"
+          aria-label="Remove item">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
