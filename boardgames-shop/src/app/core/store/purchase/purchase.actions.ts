@@ -1,5 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Game } from '../../models/game.model';
 import { Purchase } from '../../models/purchase.model';
 
-export const addPurchases = createAction('[PURCHASES] Add Purchases', props<{ purchases: Purchase[] }>());
+export const addPurchase = createAction('[PURCHASES] Add Purchase', props<{ purchase: Purchase[] }>());
+
+export const updatePurchaseQuantity = createAction(
+  '[PURCHASES] Update Purchase Quantity',
+  props<{ gameId: string; quantity: number }>(),
+);

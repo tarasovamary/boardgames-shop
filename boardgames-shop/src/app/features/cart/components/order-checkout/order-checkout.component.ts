@@ -72,8 +72,8 @@ export class OrderCheckoutComponent implements OnInit {
     this.router.navigate(['./games']);
   }
 
-  addPurchases(purchases: CartItem[]): void {
-    this.store.dispatch(PurchasesActions.addPurchases({ purchases }));
+  addPurchases(purchase: CartItem[]): void {
+    this.store.dispatch(PurchasesActions.addPurchase({ purchase }));
   }
 
   trackByFn(index: number, item: any): any {
