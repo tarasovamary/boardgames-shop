@@ -1,6 +1,6 @@
 import { Game } from './game.model';
 
-export interface Purchase {
+export interface CartItem {
   game: Game;
   quantity: number;
 }

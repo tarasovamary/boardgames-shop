@@ -8,6 +8,7 @@ import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { selectCartItems, selectCartTotalPrice } from '../../../../core/store/cart/cart.selector';
 import * as PurchasesActions from '../../../../core/store/purchase/purchase.actions';
+import { CartItem } from '../../../../core/models/cart-item.model';
 
 export interface OrderForm {
   firstName: string | null;
@@ -27,7 +28,7 @@ export type OrderFormGroup = FormGroup<{
 export class OrderCheckoutComponent implements OnInit {
   orderForm!: OrderFormGroup;
 
-  cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
+  cartItems$: Observable<CartItem[]> = this.store.select(selectCartItems);
   totalPrice$: Observable<number> = this.store.select(selectCartTotalPrice);
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
@@ -71,8 +72,8 @@ export class OrderCheckoutComponent implements OnInit {
     this.router.navigate(['./games']);
   }
 
-  addPurchases(purchases: Game[]): void {
-    this.store.dispatch(PurchasesActions.addPurchases({ purchases }));
+  addPurchases(purchase: CartItem[]): void {
+    this.store.dispatch(PurchasesActions.addPurchase({ purchase }));
   }
 
   trackByFn(index: number, item: any): any {

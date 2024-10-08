@@ -6,5 +6,9 @@ export const selectCartState = createFeatureSelector<CartState>('CART');
 export const selectCartItems = createSelector(selectCartState, (state: CartState) => state.cartItems);
 
 export const selectCartTotalPrice = createSelector(selectCartState, (state: CartState) =>
-  state.cartItems.reduce((total, game) => total + game.price, 0),
+  state.cartItems.reduce((total, item) => total + item.game.price * item.quantity, 0),
+);
+
+export const selectCartTotalQuantity = createSelector(selectCartState, (state: CartState) =>
+  state.cartItems.reduce((total, item) => total + item.quantity, 0),
 );

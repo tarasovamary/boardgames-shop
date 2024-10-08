@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Game } from '../../../../core/models/game.model';
 import { selectCartItems, selectCartTotalPrice } from '../../../../core/store/cart/cart.selector';
 import { OrderCheckoutComponent } from '../order-checkout/order-checkout.component';
+import { CartItem } from '../../../../core/models/cart-item.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,7 +13,7 @@ import { OrderCheckoutComponent } from '../order-checkout/order-checkout.compone
   styleUrl: './shopping-cart.component.scss',
 })
 export class ShoppingCartComponent {
-  cartItems$: Observable<Game[]> = this.store.select(selectCartItems);
+  cartItems$: Observable<CartItem[]> = this.store.select(selectCartItems);
   totalPrice$: Observable<number> = this.store.select(selectCartTotalPrice);
 
   constructor(
