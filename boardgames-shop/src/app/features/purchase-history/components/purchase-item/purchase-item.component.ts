@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Purchase } from '../../../../core/models/purchase.model';
+import { Order } from '../../../../core/models/purchase.model';
 
 @Component({
   selector: 'app-purchase-item',
@@ -7,5 +7,5 @@ import { Purchase } from '../../../../core/models/purchase.model';
   styleUrl: './purchase-item.component.scss',
 })
 export class PurchaseItemComponent {
-  @Input({ required: true }) item!: Purchase;
+  @Input({ required: true }) order!: Order;
 }

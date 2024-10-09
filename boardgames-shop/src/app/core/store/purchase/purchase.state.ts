@@ -1,10 +1,9 @@
-import { Game } from '../../models/game.model';
-import { Purchase } from '../../models/purchase.model';
+import { Order } from '../../models/purchase.model';
 
 export interface PurchaseState {
-  purchase: Purchase[];
+  orders: Order[];
 }
 
 export const initialState: PurchaseState = {
-  purchase: [],
+  orders: [],
 };

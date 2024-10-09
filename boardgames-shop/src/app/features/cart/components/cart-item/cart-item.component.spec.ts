@@ -41,7 +41,7 @@ describe('CartItemComponent', () => {
 
     fixture = TestBed.createComponent(CartItemComponent);
     component = fixture.componentInstance;
-    component.game = mockGame;
+    component.item.game = mockGame;
     mockStore = TestBed.inject(MockStore);
 
     fixture.detectChanges();
