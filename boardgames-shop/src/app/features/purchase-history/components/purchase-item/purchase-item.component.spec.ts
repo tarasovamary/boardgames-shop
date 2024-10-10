@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PurchaseItemComponent } from './purchase-item.component';
+import { CartItem } from '../../../../core/models/cart-item.model';
 import { Game } from '../../../../core/models/game.model';
+import { PurchaseItemComponent } from './purchase-item.component';
 
 describe('PurchaseItemComponent', () => {
   let component: PurchaseItemComponent;
@@ -30,16 +31,19 @@ describe('PurchaseItemComponent', () => {
     type: ['Abstract', 'Family'],
     category: ['Puzzle', 'Animals', 'Environmental'],
   };
-  
+  const mockCartItem: CartItem = {
+    game: mockGame,
+    quantity: 1,
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PurchaseItemComponent]
-    })
-    .compileComponents();
-    
+      declarations: [PurchaseItemComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PurchaseItemComponent);
     component = fixture.componentInstance;
-    component.game = mockGame;
+    component.item = mockCartItem;
 
     fixture.detectChanges();
   });

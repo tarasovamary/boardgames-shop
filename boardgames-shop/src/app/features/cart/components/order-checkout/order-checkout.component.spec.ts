@@ -7,6 +7,7 @@ import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
 import * as PurchasesActions from '../../../../core/store/purchase/purchase.actions';
 import { OrderCheckoutComponent } from './order-checkout.component';
+import { CartItem } from '../../../../core/models/cart-item.model';
 
 describe('OrderCheckoutComponent', () => {
   let component: OrderCheckoutComponent;
@@ -55,48 +56,55 @@ describe('OrderCheckoutComponent', () => {
   });
 
   it('should dispatch addPurchases action with correct purchases', () => {
-    const mockPurchases: Game[] = [
+    const mockPurchases: CartItem[] = [
       {
-        id: '1',
-        name: 'Game 1',
-        price: 20,
-        images: [],
-        title: 'Title 1',
-        description: 'Desc 1',
-        yearpublished: 2020,
-        rating: '4.5',
-        designer: 'Designer 1',
-        minplayers: 2,
-        maxplayers: 4,
-        playingtime: 60,
-        minage: 10,
-        type: [],
-        category: [],
+        game: {
+          id: '1',
+          name: 'Game 1',
+          price: 20,
+          images: [],
+          title: 'Title 1',
+          description: 'Desc 1',
+          yearpublished: 2020,
+          rating: '4.5',
+          designer: 'Designer 1',
+          minplayers: 2,
+          maxplayers: 4,
+          playingtime: 60,
+          minage: 10,
+          type: [],
+          category: [],
+        },
+        quantity: 2
       },
       {
-        id: '2',
-        name: 'Game 2',
-        price: 30,
-        images: [],
-        title: 'Title 2',
-        description: 'Desc 2',
-        yearpublished: 2021,
-        rating: '4.8',
-        designer: 'Designer 2',
-        minplayers: 3,
-        maxplayers: 5,
-        playingtime: 90,
-        minage: 12,
-        type: [],
-        category: [],
+        game: {
+          id: '2',
+          name: 'Game 2',
+          price: 30,
+          images: [],
+          title: 'Title 2',
+          description: 'Desc 2',
+          yearpublished: 2021,
+          rating: '4.8',
+          designer: 'Designer 2',
+          minplayers: 3,
+          maxplayers: 5,
+          playingtime: 90,
+          minage: 12,
+          type: [],
+          category: [],
+        },
+        quantity: 1
       },
     ];
+  
 
     spyOn(mockStore, 'dispatch');
 
     component.addPurchases(mockPurchases);
 
-    expect(mockStore.dispatch).toHaveBeenCalledWith(PurchasesActions.addPurchases({ purchases: mockPurchases }));
+    expect(mockStore.dispatch).toHaveBeenCalledWith(PurchasesActions.addPurchase({ purchase: mockPurchases }));
   });
 
   it('should return id of the item when id exists', () => {

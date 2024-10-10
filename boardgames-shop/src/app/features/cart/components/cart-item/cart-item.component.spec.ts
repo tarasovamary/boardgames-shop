@@ -3,6 +3,8 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Game } from '../../../../core/models/game.model';
 import * as CartActions from '../../../../core/store/cart/cart.actions';
 import { CartItemComponent } from './cart-item.component';
+import { CartItem } from '../../../../core/models/cart-item.model';
+import { ItemCounterComponent } from '../item-counter/item-counter.component';
 
 describe('CartItemComponent', () => {
   let component: CartItemComponent;
@@ -33,15 +35,20 @@ describe('CartItemComponent', () => {
     category: ['Puzzle', 'Animals', 'Environmental'],
   };
 
+  const mockCartItem: CartItem = {
+    game: mockGame,
+    quantity: 1,
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartItemComponent],
+      declarations: [CartItemComponent, ItemCounterComponent],
       providers: [provideMockStore({})],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartItemComponent);
     component = fixture.componentInstance;
-    component.item.game = mockGame;
+    component.item = mockCartItem;
     mockStore = TestBed.inject(MockStore);
 
     fixture.detectChanges();

@@ -23,6 +23,11 @@ export class GameItemComponent {
   isGameInCart(gameId: string): Observable<boolean> {
     return this.cartItems$.pipe(map((item) => item.some((item) => item.game.id === gameId)));
   }
+
+  removeFromCart(gameId: string): void {
+    this.store.dispatch(CartActions.removeGameFromCart({ gameId }));
+  }
+
   updateQuantity(gameId: string, quantity: number) {
     this.store.dispatch(CartActions.updateGameQuantity({ gameId, quantity }));
   }
