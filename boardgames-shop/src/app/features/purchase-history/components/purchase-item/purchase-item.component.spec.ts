@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartItem } from '../../../../core/models/cart-item.model';
 import { Game } from '../../../../core/models/game.model';
 import { PurchaseItemComponent } from './purchase-item.component';
+import { Order, Purchase } from '../../../../core/models/purchase.model';
 
 describe('PurchaseItemComponent', () => {
   let component: PurchaseItemComponent;
@@ -31,9 +32,17 @@ describe('PurchaseItemComponent', () => {
     type: ['Abstract', 'Family'],
     category: ['Puzzle', 'Animals', 'Environmental'],
   };
-  const mockCartItem: CartItem = {
+
+  const mockPurchase: Purchase = {
     game: mockGame,
     quantity: 1,
+  };
+
+  const mockOrder: Order = {
+    id: '123',
+    date: new Date(),
+    purchase: [mockPurchase],
+    totalPrice: mockGame.price * mockPurchase.quantity,
   };
 
   beforeEach(async () => {
@@ -43,7 +52,7 @@ describe('PurchaseItemComponent', () => {
 
     fixture = TestBed.createComponent(PurchaseItemComponent);
     component = fixture.componentInstance;
-    component.item = mockCartItem;
+    component.order = mockOrder;
 
     fixture.detectChanges();
   });
